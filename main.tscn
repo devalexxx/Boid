@@ -1,10 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://br6bgnf18usdg"]
 
 [ext_resource type="PackedScene" uid="uid://bq0byinhdl0n0" path="res://scene/boid_swarm.tscn" id="1_n7d5q"]
+[ext_resource type="Script" path="res://script/player.gd" id="1_xfo8w"]
+[ext_resource type="PackedScene" uid="uid://dwd8ggw6kasg2" path="res://scene/player.tscn" id="2_sq3cq"]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xfo8w")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("2_sq3cq")]
+border = 25.0
 
 [node name="BoidSwarm" parent="." instance=ExtResource("1_n7d5q")]
 count = 100

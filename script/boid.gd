@@ -14,6 +14,7 @@ var _interact_range : float
 
 var _bound : Vector2
 
+var _player: Player
 var _velocity : Vector2
 var _rnd = RandomNumberGenerator.new()
 
@@ -80,11 +81,28 @@ func move_away() -> void:
 			
 	if n_close > 0:
 		_velocity -= d / _avoidance
+		
+func move_player() -> void:
+	var dp = position - _player.position
+	if dp.x >= 0:
+		dp.x = sqrt(_avoidance_range) - dp.x
+	else:
+		dp.x = -sqrt(_avoidance_range) - dp.x
+		
+	if dp.y >= 0:
+		dp.y = sqrt(_avoidance_range) - dp.y
+	else:
+		dp.y = -sqrt(_avoidance_range) - dp.y
+		
+	_velocity -= dp * 2.0
 
 func _process(_delta: float) -> void:
 	move_closer()
 	move_with()
 	move_away()
+	
+	if _player != null:
+		move_player()
 	
 	if abs(_velocity.length()) > _max_speed:
 		var f = _max_speed / max(abs(_velocity.x), abs(_velocity.y))
