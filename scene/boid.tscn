@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dyaecxls3bmyi"]
+
+[ext_resource type="Script" path="res://script/boid.gd" id="1_0smtq"]
+[ext_resource type="Script" path="res://script/boid_range.gd" id="2_a268u"]
+[ext_resource type="Texture2D" uid="uid://dkm1fejk3r2iw" path="res://icon.svg" id="3_nkr7t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fvja"]
+size = Vector2(5, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xun5g"]
+resource_local_to_scene = true
+radius = 50.0
+
+[node name="Boid" type="RigidBody2D" node_paths=PackedStringArray("_irange_obj")]
+disable_mode = 1
+script = ExtResource("1_0smtq")
+_irange_obj = NodePath("Range/CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8fvja")
+
+[node name="Range" type="Area2D" parent="."]
+script = ExtResource("2_a268u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_xun5g")
+debug_color = Color(0.876073, 0.250311, 0.599319, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_nkr7t")

@@ -1,6 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://br6bgnf18usdg"]
 
+[ext_resource type="PackedScene" uid="uid://bq0byinhdl0n0" path="res://scene/boid_swarm.tscn" id="1_n7d5q"]
 [node name="Main" type="Node2D"]
 script = ExtResource("1_xfo8w")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BoidSwarm" parent="." instance=ExtResource("1_n7d5q")]
+count = 100
