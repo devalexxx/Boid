@@ -15,6 +15,13 @@ var _bound: Vector2
 var _rnd 	    = RandomNumberGenerator.new()
 var _boid_scene = preload("res://scene/boid.tscn")
 
+func emit_new_parameter() -> void:
+	UiSignals.emit_signal("boid_alignment_change", alignment)
+	UiSignals.emit_signal("boid_cohesion_change", cohesion)
+	UiSignals.emit_signal("boid_avoidance_change", avoidance)
+	UiSignals.emit_signal("boid_avoidance_range_change", avoidance_range)
+	UiSignals.emit_signal("boid_interact_range_change", interact_range)
+
 func apply_parameter(boid: Boid) -> void:
 	boid._bound     = _bound
 	boid._max_speed = max_speed
@@ -35,8 +42,8 @@ func _ready() -> void:
 		var boid = _boid_scene.instantiate() as Boid
 		apply_parameter(boid)
 		add_child(boid)
+	emit_new_parameter()
 	
-
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("reset"):
 		alignment = _rnd.randf_range(75, 100)
@@ -44,4 +51,5 @@ func _process(delta: float) -> void:
 		avoidance = _rnd.randf_range(1, 5)
 		avoidance_range = _rnd.randf_range(20, 30)
 		interact_range  = _rnd.randf_range(75, 100)
+		emit_new_parameter()
 		update()

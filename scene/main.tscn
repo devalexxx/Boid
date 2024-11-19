@@ -1,11 +1,67 @@
-[gd_scene load_steps=4 format=3 uid="uid://br6bgnf18usdg"]
+[gd_scene load_steps=5 format=3 uid="uid://br6bgnf18usdg"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_l7ou6"]
 [ext_resource type="PackedScene" uid="uid://dwd8ggw6kasg2" path="res://scene/player.tscn" id="2_0ldd8"]
 [ext_resource type="PackedScene" uid="uid://bq0byinhdl0n0" path="res://scene/boid_swarm.tscn" id="3_77up1"]
+[ext_resource type="Script" path="res://scene/ui_signals_listener.gd" id="4_kjb7a"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_l7ou6")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -559.0
+offset_top = -309.0
+offset_right = -559.0
+offset_bottom = -309.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_kjb7a")
+
+[node name="SwarmParameters" type="GridContainer" parent="UI"]
+layout_mode = 2
+offset_right = 133.0
+offset_bottom = 131.0
+columns = 2
+
+[node name="AlignmentKey" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+text = "Alignment"
+
+[node name="AlignmentValue" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+
+[node name="CohesionKey" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+text = "Cohesion"
+
+[node name="CohesionValue" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+
+[node name="AvoidanceKey" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+text = "Avoida	nce"
+
+[node name="AvoidanceValue" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+
+[node name="AvoidanceRangeKey" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+text = "AvoidanceRange"
+
+[node name="AvoidanceRangeValue" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+
+[node name="InteractRangeKey" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
+text = "InteractRange
+"
+
+[node name="InteractRangeValue" type="Label" parent="UI/SwarmParameters"]
+layout_mode = 2
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
